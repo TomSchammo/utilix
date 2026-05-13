@@ -29,6 +29,9 @@ typedef float f32;
 typedef double f64;
 #endif
 
+// Non owning mutable pointer.
+template <typename T> using observer_ptr = T *;
+
 } // namespace utilix
 
 #endif // !TYPES_HPP
