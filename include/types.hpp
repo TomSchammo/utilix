@@ -4,6 +4,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <type_traits>
 
 namespace utilix {
 
@@ -31,6 +32,12 @@ typedef double f64;
 
 // Non owning mutable pointer.
 template <typename T> using observer_ptr = T *;
+
+template <typename T>
+concept NumericInt = std::is_integral_v<T> && !std::is_same_v<T, bool>;
+
+template <typename T>
+concept UnsignedInt = NumericInt<T> && std::is_unsigned_v<T>;
 
 } // namespace utilix
 
