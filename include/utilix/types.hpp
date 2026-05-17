@@ -7,6 +7,7 @@
 #include <type_traits>
 
 namespace utilix {
+namespace types {
 
 typedef std::uint8_t u8;
 typedef std::int8_t i8;
@@ -39,6 +40,7 @@ concept NumericInt = std::is_integral_v<T> && !std::is_same_v<T, bool>;
 template <typename T>
 concept UnsignedInt = NumericInt<T> && std::is_unsigned_v<T>;
 
+} // namespace types
 } // namespace utilix
 
 #endif // !TYPES_HPP

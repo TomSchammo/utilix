@@ -4,8 +4,9 @@
 #include "./types.hpp"
 
 namespace utilix {
+namespace math {
 
-template <NumericInt A, UnsignedInt B>
+template <types::NumericInt A, types::UnsignedInt B>
 constexpr B euc_mod(A a, B b)
   requires(sizeof(B) >= sizeof(A))
 {
@@ -13,6 +14,7 @@ constexpr B euc_mod(A a, B b)
   return (a < A{0} and r != 0) ? b - r : r;
 }
 
+} // namespace math
 } // namespace utilix
 
 #endif // UTILIX_MATH_HPP

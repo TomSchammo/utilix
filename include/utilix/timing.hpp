@@ -8,6 +8,7 @@
 #include <iostream>
 
 namespace utilix {
+namespace timing {
 
 template <typename precision = std::chrono::milliseconds> struct ScopedTimer {
 private:
@@ -45,7 +46,7 @@ public:
 
 struct ScopedTimerMs {
   std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<f64> duration;
+  std::chrono::duration<types::f64> duration;
 
   ScopedTimerMs() { start = std::chrono::high_resolution_clock::now(); }
 
@@ -61,7 +62,7 @@ struct ScopedTimerMs {
 
 struct ScopedTimerS {
   std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<f64> duration;
+  std::chrono::duration<types::f64> duration;
 
   ScopedTimerS() { start = std::chrono::high_resolution_clock::now(); }
 
@@ -77,7 +78,7 @@ struct ScopedTimerS {
 
 struct ScopedTimerM {
   std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<f64> duration;
+  std::chrono::duration<types::f64> duration;
 
   ScopedTimerM() { start = std::chrono::high_resolution_clock::now(); }
 
@@ -91,6 +92,7 @@ struct ScopedTimerM {
   }
 };
 
+} // namespace timing
 } // namespace utilix
 
 #endif // !TIMING_HPP

@@ -2,6 +2,7 @@
 #define MEMORY_HPP
 
 namespace utilix {
+namespace memory {
 
 [[nodiscard]] constexpr unsigned long long kilo_bytes(unsigned long long n) {
   return n * 1024ULL;
@@ -30,6 +31,7 @@ template <unsigned long long n>
   return n * 1024ULL * 1024ULL * 1024ULL;
 }
 
+} // namespace memory
 } // namespace utilix
 
 #endif // MEMORY_HPP
