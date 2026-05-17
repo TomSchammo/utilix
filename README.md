@@ -1,11 +1,34 @@
 
-# Utilitx
+# Utilix
 
 This is a small header-only library I made for personal projects.
 
-There are no requirements other than C++14 and CMake 3.18.
+There are no requirements other than C++20 (due to the usage of concepts) and CMake 3.21.
 
-It can be installed by running `sudo make install` in the project root.
+## Using it
+
+### Via `FetchContent`
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(
+    utilix
+    GIT_REPOSITORY https://github.com/tomschammo/utilix
+    GIT_TAG        main
+)
+FetchContent_MakeAvailable(utilix)
+
+target_link_libraries(my_target PRIVATE utilix::utilix)
+```
+
+### Via `find_package`
+
+Install once with `sudo make install` in the project root, then:
+
+```cmake
+find_package(utilix REQUIRED)
+target_link_libraries(my_target PRIVATE utilix::utilix)
+```
 
 ## Components
 
@@ -38,6 +61,6 @@ int main (int argc, char *argv[]) {
 resulting in the following output
 
 ```
-> g++ test.cpp -o t -std=c++14 && ./t
+> g++ test.cpp -o t -std=c++20 && ./t
 2005ms have elapsed
 ```
