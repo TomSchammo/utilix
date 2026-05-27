@@ -1,6 +1,6 @@
 
-#ifndef TYPES_HPP
-#define TYPES_HPP
+#ifndef UTILIX_TYPES_HPP
+#define UTILIX_TYPES_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -43,4 +43,4 @@ concept UnsignedInt = NumericInt<T> && std::is_unsigned_v<T>;
 } // namespace types
 } // namespace utilix
 
-#endif // !TYPES_HPP
+#endif // UTILIX_TYPES_HPP

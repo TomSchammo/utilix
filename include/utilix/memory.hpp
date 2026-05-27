@@ -1,5 +1,5 @@
-#ifndef MEMORY_HPP
-#define MEMORY_HPP
+#ifndef UTILIX_MEMORY_HPP
+#define UTILIX_MEMORY_HPP
 
 namespace utilix {
 namespace memory {
@@ -34,4 +34,4 @@ template <unsigned long long n>
 } // namespace memory
 } // namespace utilix
 
-#endif // MEMORY_HPP
+#endif // UTILIX_MEMORY_HPP

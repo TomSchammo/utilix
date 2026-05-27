@@ -1,7 +1,5 @@
-
-
-#ifndef TIMING_HPP
-#define TIMING_HPP
+#ifndef UTILIX_TIMING_HPP
+#define UTILIX_TIMING_HPP
 
 #include "types.hpp"
 #include <chrono>
@@ -95,4 +93,4 @@ struct ScopedTimerM {
 } // namespace timing
 } // namespace utilix
 
-#endif // !TIMING_HPP
+#endif // UTILIX_TIMING_HPP
