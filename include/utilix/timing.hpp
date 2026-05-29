@@ -10,7 +10,14 @@
 namespace utilix {
 namespace timing {
 
-template <typename precision> static consteval std::string_view time_str() {
+template <typename T>
+concept ChronoDuration = requires {
+  requires std::is_same_v<
+      T, std::chrono::duration<typename T::rep, typename T::period>>;
+};
+
+template <ChronoDuration precision>
+static consteval std::string_view time_str() {
   if constexpr (std::is_same_v<precision, std::chrono::milliseconds>)
     return "ms";
   else if constexpr (std::is_same_v<precision, std::chrono::seconds>)
@@ -25,7 +32,8 @@ template <typename precision> static consteval std::string_view time_str() {
     std::unreachable();
 }
 
-template <typename precision = std::chrono::milliseconds> struct ScopedVTimer {
+template <ChronoDuration precision = std::chrono::milliseconds>
+struct ScopedVTimer {
 private:
   std::string name;
   std::chrono::high_resolution_clock::time_point start;
@@ -47,25 +55,11 @@ public:
   }
 };
 
-template <typename precision = std::chrono::milliseconds> struct ScopedTimer {
+template <ChronoDuration precision = std::chrono::milliseconds>
+struct ScopedTimer {
 private:
   std::string name;
   std::chrono::high_resolution_clock::time_point start;
-
-  constexpr std::string_view time_str() {
-    if (typeid(precision) == typeid(std::chrono::milliseconds))
-      return "ms";
-    else if (typeid(precision) == typeid(std::chrono::seconds))
-      return "s";
-    else if (typeid(precision) == typeid(std::chrono::microseconds))
-      return "us";
-    else if (typeid(precision) == typeid(std::chrono::nanoseconds))
-      return "ns";
-    else if (typeid(precision) == typeid(std::chrono::minutes))
-      return "min";
-    else
-      return "";
-  }
 
 public:
   ScopedTimer(const std::string &name)
@@ -77,7 +71,7 @@ public:
 
     std::cout << name << " took "
               << std::chrono::duration_cast<precision>(duration).count()
-              << time_str() << "\n";
+              << time_str<precision>() << "\n";
   }
 };
 
