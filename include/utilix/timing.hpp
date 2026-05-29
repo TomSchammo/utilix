@@ -4,9 +4,48 @@
 #include "types.hpp"
 #include <chrono>
 #include <iostream>
+#include <type_traits>
+#include <utility>
 
 namespace utilix {
 namespace timing {
+
+template <typename precision> static consteval std::string_view time_str() {
+  if constexpr (std::is_same_v<precision, std::chrono::milliseconds>)
+    return "ms";
+  else if constexpr (std::is_same_v<precision, std::chrono::seconds>)
+    return "s";
+  else if constexpr (std::is_same_v<precision, std::chrono::microseconds>)
+    return "us";
+  else if constexpr (std::is_same_v<precision, std::chrono::nanoseconds>)
+    return "ns";
+  else if constexpr (std::is_same_v<precision, std::chrono::minutes>)
+    return "min";
+  else
+    std::unreachable();
+}
+
+template <typename precision = std::chrono::milliseconds> struct ScopedVTimer {
+private:
+  std::string name;
+  std::chrono::high_resolution_clock::time_point start;
+  utilix::types::u64 &duration_ref;
+
+public:
+  ScopedVTimer(const std::string &name, utilix::types::u64 &duration_ref)
+      : name(name), start(std::chrono::high_resolution_clock::now()),
+        duration_ref(duration_ref) {}
+
+  ~ScopedVTimer() {
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = end - start;
+
+    auto d = std::chrono::duration_cast<precision>(duration).count();
+    duration_ref = d;
+
+    std::cout << name << " took " << d << time_str<precision>() << "\n";
+  }
+};
 
 template <typename precision = std::chrono::milliseconds> struct ScopedTimer {
 private:
