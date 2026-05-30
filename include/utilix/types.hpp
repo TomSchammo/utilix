@@ -21,7 +21,7 @@ typedef std::int32_t i32;
 typedef std::uint64_t u64;
 typedef std::int64_t i64;
 
-typedef std::size_t size;
+typedef std::size_t ssize;
 
 #ifndef NO_FLOATS
 static_assert(sizeof(float) == 4, "Expected float to be 32 bits wide!");
