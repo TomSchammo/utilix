@@ -6,8 +6,7 @@
 #include <cstdint>
 #include <type_traits>
 
-namespace utilix {
-namespace types {
+namespace utilix::types {
 
 typedef std::uint8_t u8;
 typedef std::int8_t i8;
@@ -32,7 +31,7 @@ typedef double f64;
 #endif
 
 // Non owning mutable pointer.
-template <typename T> using observer_ptr = T *;
+template <typename T> using observer_ptr = T*;
 
 template <typename T>
 concept NumericInt = std::is_integral_v<T> && !std::is_same_v<T, bool>;
@@ -40,7 +39,6 @@ concept NumericInt = std::is_integral_v<T> && !std::is_same_v<T, bool>;
 template <typename T>
 concept UnsignedInt = NumericInt<T> && std::is_unsigned_v<T>;
 
-} // namespace types
-} // namespace utilix
+} // namespace utilix::types
 
 #endif // UTILIX_TYPES_HPP

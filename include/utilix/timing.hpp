@@ -7,13 +7,11 @@
 #include <iostream>
 #include <type_traits>
 
-namespace utilix {
-namespace timing {
+namespace utilix::timing {
 
 template <typename T>
 concept ChronoDuration = requires {
-  requires std::is_same_v<
-      T, std::chrono::duration<typename T::rep, typename T::period>>;
+  requires std::is_same_v<T, std::chrono::duration<typename T::rep, typename T::period>>;
 };
 
 template <ChronoDuration precision>
@@ -124,7 +122,6 @@ public:
   }
 };
 
-} // namespace timing
-} // namespace utilix
+} // namespace utilix::timing
 
 #endif // UTILIX_TIMING_HPP

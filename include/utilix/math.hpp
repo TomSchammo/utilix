@@ -3,8 +3,7 @@
 
 #include "./types.hpp"
 
-namespace utilix {
-namespace math {
+namespace utilix::math {
 
 template <types::NumericInt A, types::UnsignedInt B>
 constexpr B euc_mod(A a, B b)
@@ -14,7 +13,6 @@ constexpr B euc_mod(A a, B b)
   return (a < A{0} and r != 0) ? b - r : r;
 }
 
-} // namespace math
-} // namespace utilix
+} // namespace utilix::math
 
 #endif // UTILIX_MATH_HPP

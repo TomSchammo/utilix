@@ -1,8 +1,7 @@
 #ifndef UTILIX_MEMORY_HPP
 #define UTILIX_MEMORY_HPP
 
-namespace utilix {
-namespace memory {
+namespace utilix::memory {
 
 [[nodiscard]] constexpr unsigned long long kilo_bytes(unsigned long long n) {
   return n * 1024ULL;
@@ -31,7 +30,6 @@ template <unsigned long long n>
   return n * 1024ULL * 1024ULL * 1024ULL;
 }
 
-} // namespace memory
-} // namespace utilix
+} // namespace utilix::memory
 
 #endif // UTILIX_MEMORY_HPP
