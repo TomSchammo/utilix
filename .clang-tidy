@@ -1,0 +1,19 @@
+---
+Checks: >
+  -*,
+  readability-*,
+  clang-analyzer-*,
+  boost-*,
+  cppcoreguidelines-*,
+  bugprone-*,
+  modernize-*,
+  performance-*,
+  -modernize-pass-by-value,
+  -modernize-use-trailing-return-type,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-suspicious-include,
+  -readability-identifier-length
+
+WarningsAsErrors: ''
+HeaderFilterRegex: 'include/utilix/.*\.hpp$'
+FormatStyle: file
