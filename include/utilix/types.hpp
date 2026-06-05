@@ -8,26 +8,26 @@
 
 namespace utilix::types {
 
-typedef std::uint8_t u8;
-typedef std::int8_t i8;
+using u8 = std::uint8_t;
+using i8 = std::int8_t;
 
-typedef std::uint16_t u16;
-typedef std::int16_t i16;
+using u16 = std::uint16_t;
+using i16 = std::int16_t;
 
-typedef std::uint32_t u32;
-typedef std::int32_t i32;
+using u32 = std::uint32_t;
+using i32 = std::int32_t;
 
-typedef std::uint64_t u64;
-typedef std::int64_t i64;
+using u64 = std::uint64_t;
+using i64 = std::int64_t;
 
-typedef std::size_t ssize;
+using ssize = std::size_t;
 
 #ifndef NO_FLOATS
 static_assert(sizeof(float) == 4, "Expected float to be 32 bits wide!");
 static_assert(sizeof(double) == 8, "Expected double to be 64 bits wide!");
 
-typedef float f32;
-typedef double f64;
+using f32 = float;
+using f64 = double;
 #endif
 
 // Non owning mutable pointer.
