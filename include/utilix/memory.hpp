@@ -15,26 +15,11 @@ constexpr auto GB = KB * KB * KB;
   return n * KB;
 }
 
-template <unsigned long long n>
-[[nodiscard]] constexpr unsigned long long kilo_bytes() {
-  return n * KB;
-}
-
 [[nodiscard]] constexpr unsigned long long mega_bytes(unsigned long long n) {
   return n * MB;
 }
 
-template <unsigned long long n>
-[[nodiscard]] constexpr unsigned long long mega_bytes() {
-  return n * MB;
-}
-
 [[nodiscard]] constexpr unsigned long long giga_bytes(unsigned long long n) {
-  return n * GB;
-}
-
-template <unsigned long long n>
-[[nodiscard]] constexpr unsigned long long giga_bytes() {
   return n * GB;
 }
 
