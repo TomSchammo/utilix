@@ -73,45 +73,54 @@ public:
 };
 
 struct ScopedTimerMs {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<types::f64> duration;
 
-  ScopedTimerMs() : start(std::chrono::high_resolution_clock::now()) {}
+private:
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
+  std::chrono::duration<types::f64> duration_;
+
+public:
+  ScopedTimerMs() : start_(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimerMs() {
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - start;
+    end_ = std::chrono::high_resolution_clock::now();
+    duration_ = end_ - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration)
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration_)
               << " have elapsed\n";
   }
 };
 
 struct ScopedTimerS {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<types::f64> duration;
 
-  ScopedTimerS() : start(std::chrono::high_resolution_clock::now()) {}
+private:
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
+  std::chrono::duration<types::f64> duration_;
+
+public:
+  ScopedTimerS() : start_(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimerS() {
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - start;
+    end_ = std::chrono::high_resolution_clock::now();
+    duration_ = end_ - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration) << " have elapsed\n";
+    std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration_) << " have elapsed\n";
   }
 };
 
 struct ScopedTimerM {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  std::chrono::duration<types::f64> duration;
 
-  ScopedTimerM() : start(std::chrono::high_resolution_clock::now()) {}
+private:
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
+  std::chrono::duration<types::f64> duration_;
+
+public:
+  ScopedTimerM() : start_(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimerM() {
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - start;
+    end_ = std::chrono::high_resolution_clock::now();
+    duration_ = end_ - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration) << " have elapsed\n";
+    std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration_) << " have elapsed\n";
   }
 };
 
