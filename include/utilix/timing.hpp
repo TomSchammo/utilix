@@ -76,7 +76,7 @@ struct ScopedTimerMs {
   std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
   std::chrono::duration<types::f64> duration;
 
-  ScopedTimerMs() { start = std::chrono::high_resolution_clock::now(); }
+  ScopedTimerMs() : start(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimerMs() {
     end = std::chrono::high_resolution_clock::now();
@@ -91,7 +91,7 @@ struct ScopedTimerS {
   std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
   std::chrono::duration<types::f64> duration;
 
-  ScopedTimerS() { start = std::chrono::high_resolution_clock::now(); }
+  ScopedTimerS() : start(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimerS() {
     end = std::chrono::high_resolution_clock::now();
@@ -105,7 +105,7 @@ struct ScopedTimerM {
   std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
   std::chrono::duration<types::f64> duration;
 
-  ScopedTimerM() { start = std::chrono::high_resolution_clock::now(); }
+  ScopedTimerM() : start(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimerM() {
     end = std::chrono::high_resolution_clock::now();
