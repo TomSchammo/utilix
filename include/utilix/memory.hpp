@@ -3,31 +3,39 @@
 
 namespace utilix::memory {
 
+constexpr auto KiB = 1024ULL;
+constexpr auto MiB = KiB * KiB;
+constexpr auto GiB = KiB * KiB * KiB;
+
+constexpr auto KB = 1000ULL;
+constexpr auto MB = KB * KB;
+constexpr auto GB = KB * KB * KB;
+
 [[nodiscard]] constexpr unsigned long long kilo_bytes(unsigned long long n) {
-  return n * 1024ULL;
+  return n * KB;
 }
 
 template <unsigned long long n>
 [[nodiscard]] constexpr unsigned long long kilo_bytes() {
-  return n * 1024ULL;
+  return n * KB;
 }
 
 [[nodiscard]] constexpr unsigned long long mega_bytes(unsigned long long n) {
-  return n * 1024ULL * 1024ULL;
+  return n * MB;
 }
 
 template <unsigned long long n>
 [[nodiscard]] constexpr unsigned long long mega_bytes() {
-  return n * 1024ULL * 1024ULL;
+  return n * MB;
 }
 
 [[nodiscard]] constexpr unsigned long long giga_bytes(unsigned long long n) {
-  return n * 1024ULL * 1024ULL * 1024ULL;
+  return n * GB;
 }
 
 template <unsigned long long n>
 [[nodiscard]] constexpr unsigned long long giga_bytes() {
-  return n * 1024ULL * 1024ULL * 1024ULL;
+  return n * GB;
 }
 
 } // namespace utilix::memory
