@@ -31,8 +31,7 @@ static consteval std::string_view time_str() {
 }
 
 template <ChronoDuration precision = std::chrono::milliseconds>
-struct ScopedVTimer {
-private:
+class ScopedVTimer {
   std::string name_;
   std::chrono::high_resolution_clock::time_point start_;
   utilix::types::u64& duration_ref_;
@@ -53,8 +52,7 @@ public:
 };
 
 template <ChronoDuration precision = std::chrono::milliseconds>
-struct ScopedTimer {
-private:
+class ScopedTimer {
   std::string name_;
   std::chrono::high_resolution_clock::time_point start_;
 
@@ -70,9 +68,7 @@ public:
   }
 };
 
-struct ScopedTimerMs {
-
-private:
+class ScopedTimerMs {
   std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
   std::chrono::duration<types::f64> duration_;
 
@@ -88,9 +84,7 @@ public:
   }
 };
 
-struct ScopedTimerS {
-
-private:
+class ScopedTimerS {
   std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
   std::chrono::duration<types::f64> duration_;
 
@@ -105,9 +99,7 @@ public:
   }
 };
 
-struct ScopedTimerM {
-
-private:
+class ScopedTimerM {
   std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
   std::chrono::duration<types::f64> duration_;
 
