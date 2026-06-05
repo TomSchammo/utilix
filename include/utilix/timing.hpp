@@ -35,43 +35,40 @@ static consteval std::string_view time_str() {
 template <ChronoDuration precision = std::chrono::milliseconds>
 struct ScopedVTimer {
 private:
-  std::string name;
-  std::chrono::high_resolution_clock::time_point start;
-  utilix::types::u64 &duration_ref;
+  std::string name_;
+  std::chrono::high_resolution_clock::time_point start_;
+  utilix::types::u64& duration_ref_;
 
 public:
-  ScopedVTimer(const std::string &name, utilix::types::u64 &duration_ref)
-      : name(name), start(std::chrono::high_resolution_clock::now()),
-        duration_ref(duration_ref) {}
+  ScopedVTimer(const std::string& name, utilix::types::u64& duration_ref)
+      : name_(name), start_(std::chrono::high_resolution_clock::now()),
+        duration_ref_(duration_ref) {}
 
   ~ScopedVTimer() {
     auto end = std::chrono::high_resolution_clock::now();
-    auto duration = end - start;
+    auto duration = std::chrono::duration_cast<precision>(end - start_);
 
-    auto d = std::chrono::duration_cast<precision>(duration).count();
-    duration_ref = d;
+    duration_ref_ = static_cast<utilix::types::u64>(duration.count());
 
-    std::cout << name << " took " << d << time_str<precision>() << "\n";
+    std::cout << name_ << " took " << duration << "\n";
   }
 };
 
 template <ChronoDuration precision = std::chrono::milliseconds>
 struct ScopedTimer {
 private:
-  std::string name;
-  std::chrono::high_resolution_clock::time_point start;
+  std::string name_;
+  std::chrono::high_resolution_clock::time_point start_;
 
 public:
-  ScopedTimer(const std::string &name)
-      : name(name), start(std::chrono::high_resolution_clock::now()) {}
+  explicit ScopedTimer(const std::string& name)
+      : name_(name), start_(std::chrono::high_resolution_clock::now()) {}
 
   ~ScopedTimer() {
     auto end = std::chrono::high_resolution_clock::now();
-    auto duration = end - start;
+    auto duration = end - start_;
 
-    std::cout << name << " took "
-              << std::chrono::duration_cast<precision>(duration).count()
-              << time_str<precision>() << "\n";
+    std::cout << name_ << " took " << std::chrono::duration_cast<precision>(duration) << "\n";
   }
 };
 
@@ -86,8 +83,7 @@ struct ScopedTimerMs {
     duration = end - start;
 
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration)
-                     .count()
-              << "ms have elapsed\n";
+              << " have elapsed\n";
   }
 };
 
@@ -101,9 +97,7 @@ struct ScopedTimerS {
     end = std::chrono::high_resolution_clock::now();
     duration = end - start;
 
-    std::cout
-        << std::chrono::duration_cast<std::chrono::seconds>(duration).count()
-        << "s have elapsed\n";
+    std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration) << " have elapsed\n";
   }
 };
 
@@ -117,9 +111,7 @@ struct ScopedTimerM {
     end = std::chrono::high_resolution_clock::now();
     duration = end - start;
 
-    std::cout
-        << std::chrono::duration_cast<std::chrono::minutes>(duration).count()
-        << "minutes have elapsed\n";
+    std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration) << " have elapsed\n";
   }
 };
 
