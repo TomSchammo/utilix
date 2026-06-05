@@ -12,7 +12,8 @@ Checks: >
   -modernize-use-trailing-return-type,
   -bugprone-easily-swappable-parameters,
   -bugprone-suspicious-include,
-  -readability-identifier-length
+  -readability-identifier-length,
+  -readability-braces-around-statements
 
 WarningsAsErrors: ''
 HeaderFilterRegex: 'include/utilix/.*\.hpp$'
