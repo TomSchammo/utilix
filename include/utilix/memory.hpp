@@ -23,6 +23,18 @@ constexpr auto GB = KB * KB * KB;
   return n * GB;
 }
 
+[[nodiscard]] constexpr unsigned long long kibi_bytes(unsigned long long n) {
+  return n * KiB;
+}
+
+[[nodiscard]] constexpr unsigned long long mibi_bytes(unsigned long long n) {
+  return n * MiB;
+}
+
+[[nodiscard]] constexpr unsigned long long gibi_bytes(unsigned long long n) {
+  return n * GiB;
+}
+
 } // namespace utilix::memory
 
 #endif // UTILIX_MEMORY_HPP
