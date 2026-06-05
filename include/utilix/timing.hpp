@@ -3,9 +3,9 @@
 
 #include "types.hpp"
 #include <chrono>
+#include <format>
 #include <iostream>
 #include <type_traits>
-#include <utility>
 
 namespace utilix {
 namespace timing {
@@ -29,7 +29,7 @@ static consteval std::string_view time_str() {
   else if constexpr (std::is_same_v<precision, std::chrono::minutes>)
     return "min";
   else
-    std::unreachable();
+    throw std::format("Duration {} is not supported");
 }
 
 template <ChronoDuration precision = std::chrono::milliseconds>
