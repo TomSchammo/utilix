@@ -41,6 +41,11 @@ public:
       : name_(name), start_(std::chrono::high_resolution_clock::now()),
         duration_ref_(duration_ref) {}
 
+  ScopedVTimer(const ScopedVTimer&) = delete;
+  ScopedVTimer(ScopedVTimer&&) = delete;
+  ScopedVTimer& operator=(const ScopedVTimer&) = delete;
+  ScopedVTimer& operator=(ScopedVTimer&&) = delete;
+
   ~ScopedVTimer() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<precision>(end - start_);
@@ -60,6 +65,11 @@ public:
   explicit ScopedTimer(const std::string& name)
       : name_(name), start_(std::chrono::high_resolution_clock::now()) {}
 
+  ScopedTimer(const ScopedTimer&) = delete;
+  ScopedTimer(ScopedTimer&&) = delete;
+  ScopedTimer& operator=(const ScopedTimer&) = delete;
+  ScopedTimer& operator=(ScopedTimer&&) = delete;
+
   ~ScopedTimer() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = end - start_;
@@ -74,6 +84,11 @@ class ScopedTimerMs {
 
 public:
   ScopedTimerMs() : start_(std::chrono::high_resolution_clock::now()) {}
+
+  ScopedTimerMs(const ScopedTimerMs&) = default;
+  ScopedTimerMs(ScopedTimerMs&&) = delete;
+  ScopedTimerMs& operator=(const ScopedTimerMs&) = default;
+  ScopedTimerMs& operator=(ScopedTimerMs&&) = delete;
 
   ~ScopedTimerMs() {
     end_ = std::chrono::high_resolution_clock::now();
@@ -91,6 +106,11 @@ class ScopedTimerS {
 public:
   ScopedTimerS() : start_(std::chrono::high_resolution_clock::now()) {}
 
+  ScopedTimerS(const ScopedTimerS&) = default;
+  ScopedTimerS(ScopedTimerS&&) = delete;
+  ScopedTimerS& operator=(const ScopedTimerS&) = default;
+  ScopedTimerS& operator=(ScopedTimerS&&) = delete;
+
   ~ScopedTimerS() {
     end_ = std::chrono::high_resolution_clock::now();
     duration_ = end_ - start_;
@@ -105,6 +125,11 @@ class ScopedTimerM {
 
 public:
   ScopedTimerM() : start_(std::chrono::high_resolution_clock::now()) {}
+
+  ScopedTimerM(const ScopedTimerM&) = default;
+  ScopedTimerM(ScopedTimerM&&) = delete;
+  ScopedTimerM& operator=(const ScopedTimerM&) = default;
+  ScopedTimerM& operator=(ScopedTimerM&&) = delete;
 
   ~ScopedTimerM() {
     end_ = std::chrono::high_resolution_clock::now();
