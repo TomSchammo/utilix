@@ -3,6 +3,8 @@
 
 #include "types.hpp"
 #include <chrono>
+#include <cstdio>
+#include <exception>
 #include <format>
 #include <iostream>
 #include <type_traits>
@@ -52,7 +54,11 @@ public:
 
     duration_ref_ = static_cast<utilix::types::u64>(duration.count());
 
-    std::cout << name_ << " took " << duration << "\n";
+    try {
+      std::cout << name_ << " took " << duration << "\n";
+    } catch (const std::exception& e) {
+      std::puts(e.what());
+    }
   }
 };
 
@@ -74,7 +80,11 @@ public:
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = end - start_;
 
-    std::cout << name_ << " took " << std::chrono::duration_cast<precision>(duration) << "\n";
+    try {
+      std::cout << name_ << " took " << std::chrono::duration_cast<precision>(duration) << "\n";
+    } catch (const std::exception& e) {
+      std::puts(e.what());
+    }
   }
 };
 
@@ -93,8 +103,12 @@ public:
     const auto end = std::chrono::high_resolution_clock::now();
     const auto duration = end - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration)
-              << " have elapsed\n";
+    try {
+      std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration)
+                << " have elapsed\n";
+    } catch (const std::exception& e) {
+      std::puts(e.what());
+    }
   }
 };
 
@@ -113,7 +127,11 @@ public:
     const auto end = std::chrono::high_resolution_clock::now();
     const auto duration = end - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration) << " have elapsed\n";
+    try {
+      std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration) << " have elapsed\n";
+    } catch (const std::exception& e) {
+      std::puts(e.what());
+    }
   }
 };
 
@@ -132,7 +150,11 @@ public:
     const auto end = std::chrono::high_resolution_clock::now();
     const auto duration = end - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration) << " have elapsed\n";
+    try {
+      std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration) << " have elapsed\n";
+    } catch (const std::exception& e) {
+      std::puts(e.what());
+    }
   }
 };
 
