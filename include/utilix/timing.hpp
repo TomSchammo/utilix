@@ -32,8 +32,8 @@ static consteval std::string_view time_str() {
 
 template <ChronoDuration precision = std::chrono::milliseconds>
 class ScopedVTimer {
-  std::string name_;
-  std::chrono::high_resolution_clock::time_point start_;
+  const std::string name_;
+  const std::chrono::high_resolution_clock::time_point start_;
   utilix::types::u64& duration_ref_;
 
 public:
@@ -47,8 +47,8 @@ public:
   ScopedVTimer& operator=(ScopedVTimer&&) = delete;
 
   ~ScopedVTimer() {
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<precision>(end - start_);
+    const auto end = std::chrono::high_resolution_clock::now();
+    const auto duration = std::chrono::duration_cast<precision>(end - start_);
 
     duration_ref_ = static_cast<utilix::types::u64>(duration.count());
 
@@ -58,8 +58,8 @@ public:
 
 template <ChronoDuration precision = std::chrono::milliseconds>
 class ScopedTimer {
-  std::string name_;
-  std::chrono::high_resolution_clock::time_point start_;
+  const std::string name_;
+  const std::chrono::high_resolution_clock::time_point start_;
 
 public:
   explicit ScopedTimer(const std::string& name)
@@ -79,14 +79,14 @@ public:
 };
 
 class ScopedTimerMs {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_;
+  const std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
 public:
   ScopedTimerMs() : start_(std::chrono::high_resolution_clock::now()) {}
 
-  ScopedTimerMs(const ScopedTimerMs&) = default;
+  ScopedTimerMs(const ScopedTimerMs&) = delete;
   ScopedTimerMs(ScopedTimerMs&&) = delete;
-  ScopedTimerMs& operator=(const ScopedTimerMs&) = default;
+  ScopedTimerMs& operator=(const ScopedTimerMs&) = delete;
   ScopedTimerMs& operator=(ScopedTimerMs&&) = delete;
 
   ~ScopedTimerMs() {
@@ -99,14 +99,14 @@ public:
 };
 
 class ScopedTimerS {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_;
+  const std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
 public:
   ScopedTimerS() : start_(std::chrono::high_resolution_clock::now()) {}
 
-  ScopedTimerS(const ScopedTimerS&) = default;
+  ScopedTimerS(const ScopedTimerS&) = delete;
   ScopedTimerS(ScopedTimerS&&) = delete;
-  ScopedTimerS& operator=(const ScopedTimerS&) = default;
+  ScopedTimerS& operator=(const ScopedTimerS&) = delete;
   ScopedTimerS& operator=(ScopedTimerS&&) = delete;
 
   ~ScopedTimerS() {
@@ -118,14 +118,14 @@ public:
 };
 
 class ScopedTimerM {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_;
+  const std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
 public:
   ScopedTimerM() : start_(std::chrono::high_resolution_clock::now()) {}
 
-  ScopedTimerM(const ScopedTimerM&) = default;
+  ScopedTimerM(const ScopedTimerM&) = delete;
   ScopedTimerM(ScopedTimerM&&) = delete;
-  ScopedTimerM& operator=(const ScopedTimerM&) = default;
+  ScopedTimerM& operator=(const ScopedTimerM&) = delete;
   ScopedTimerM& operator=(ScopedTimerM&&) = delete;
 
   ~ScopedTimerM() {
