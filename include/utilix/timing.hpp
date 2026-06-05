@@ -79,8 +79,7 @@ public:
 };
 
 class ScopedTimerMs {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
-  std::chrono::duration<types::f64> duration_;
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
 public:
   ScopedTimerMs() : start_(std::chrono::high_resolution_clock::now()) {}
@@ -91,17 +90,16 @@ public:
   ScopedTimerMs& operator=(ScopedTimerMs&&) = delete;
 
   ~ScopedTimerMs() {
-    end_ = std::chrono::high_resolution_clock::now();
-    duration_ = end_ - start_;
+    const auto end = std::chrono::high_resolution_clock::now();
+    const auto duration = end - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration_)
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(duration)
               << " have elapsed\n";
   }
 };
 
 class ScopedTimerS {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
-  std::chrono::duration<types::f64> duration_;
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
 public:
   ScopedTimerS() : start_(std::chrono::high_resolution_clock::now()) {}
@@ -112,16 +110,15 @@ public:
   ScopedTimerS& operator=(ScopedTimerS&&) = delete;
 
   ~ScopedTimerS() {
-    end_ = std::chrono::high_resolution_clock::now();
-    duration_ = end_ - start_;
+    const auto end = std::chrono::high_resolution_clock::now();
+    const auto duration = end - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration_) << " have elapsed\n";
+    std::cout << std::chrono::duration_cast<std::chrono::seconds>(duration) << " have elapsed\n";
   }
 };
 
 class ScopedTimerM {
-  std::chrono::time_point<std::chrono::high_resolution_clock> start_, end_;
-  std::chrono::duration<types::f64> duration_;
+  std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
 public:
   ScopedTimerM() : start_(std::chrono::high_resolution_clock::now()) {}
@@ -132,10 +129,10 @@ public:
   ScopedTimerM& operator=(ScopedTimerM&&) = delete;
 
   ~ScopedTimerM() {
-    end_ = std::chrono::high_resolution_clock::now();
-    duration_ = end_ - start_;
+    const auto end = std::chrono::high_resolution_clock::now();
+    const auto duration = end - start_;
 
-    std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration_) << " have elapsed\n";
+    std::cout << std::chrono::duration_cast<std::chrono::minutes>(duration) << " have elapsed\n";
   }
 };
 
