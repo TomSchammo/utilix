@@ -1,0 +1,74 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Multi-config (Debug + RelWithDebInfo + Release)",
+      "description": "Ninja Multi-Config. One build dir, switch configs at build time. Debug is the default and clangd's view.",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_DEFAULT_BUILD_TYPE": "Debug"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "displayName": "Debug (sanitizers on)",
+      "configurePreset": "default",
+      "configuration": "Debug"
+    },
+    {
+      "name": "rwdi",
+      "displayName": "RelWithDebInfo (LTO + native arch)",
+      "configurePreset": "default",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "release",
+      "displayName": "Release (LTO + native arch)",
+      "configurePreset": "default",
+      "configuration": "Release"
+    },
+    {
+      "name": "verify-headers",
+      "displayName": "Header self-containment check",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "targets": ["utilix_verify_interface_header_sets"]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "displayName": "Tests (Debug)",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "release",
+      "displayName": "Tests (Release)",
+      "configurePreset": "default",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "dev",
+      "displayName": "Configure + build + test (Debug)",
+      "steps": [
+        { "type": "configure", "name": "default" },
+        { "type": "build", "name": "debug" },
+        { "type": "test", "name": "debug" }
+      ]
+    }
+  ]
+}
